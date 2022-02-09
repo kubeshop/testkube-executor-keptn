@@ -1,19 +1,13 @@
-# README
+# TestKube Executor Keptn
 
-**BEFORE YOU START**, please be aware that there are more ways to integrate with your service that don't require creating a service from this template, see https://keptn.sh/docs/0.10.x/integrations/how_integrate/ for more details.
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) [![Go Report Card](https://goreportcard.com/badge/github.com/kubeshop/testkube-executor-keptn)](https://goreportcard.com/report/github.com/kubeshop/testkube-executor-keptn)
 
-Examples:
-
-* Webhooks: https://keptn.sh/docs/0.10.x/integrations/webhooks/
-* Job-Executor-Service: https://github.com/keptn-sandbox/job-executor-service
-
----
+Discord server: https://discord.gg/8RVUapTP
 
 This is a Keptn Service Template written in GoLang. Follow the instructions below for writing your own Keptn integration.
 
 Quick start:
 
-1. In case you want to contribute your service to keptn-sandbox or keptn-contrib, make sure you have read and understood the [Contributing Guidelines](https://github.com/keptn-sandbox/contributing).
 1. Click [Use this template](https://github.com/keptn-sandbox/keptn-service-template-go/generate) on top of the repository, or download the repo as a zip-file, extract it into a new folder named after the service you want to create (e.g., simple-service) 
 1. Replace every occurrence of (docker) image names and tags from `keptnsandbox/keptn-service-template-go` to your docker organization and image name (e.g., `yourorganization/simple-service`)
 1. Replace every occurrence of `keptn-service-template-go` with the name of your service (e.g., `simple-service`)
@@ -29,12 +23,6 @@ Quick start:
 1. Last but not least: Remove this intro within the README file and make sure the README file properly states what this repository is about
 
 ---
-
-# keptn-service-template-go
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/keptn-sandbox/keptn-service-template-go)
-[![Go Report Card](https://goreportcard.com/badge/github.com/keptn-sandbox/keptn-service-template-go)](https://goreportcard.com/report/github.com/keptn-sandbox/keptn-service-template-go)
-
-This implements a keptn-service-template-go for Keptn. If you want to learn more about Keptn visit us on [keptn.sh](https://keptn.sh)
 
 ## Compatibility Matrix
 
@@ -147,27 +135,3 @@ This repo uses GH Actions and Workflows to test the code and automatically build
 Docker Images are automatically pushed based on the configuration done in [.ci_env](.ci_env) and the two [GitHub Secrets](https://github.com/keptn-sandbox/keptn-service-template-go/settings/secrets/actions)
 * `REGISTRY_USER` - your DockerHub username
 * `REGISTRY_PASSWORD` - a DockerHub [access token](https://hub.docker.com/settings/security) (alternatively, your DockerHub password)
-
-## How to release a new version of this service
-
-It is assumed that the current development takes place in the master branch (either via Pull Requests or directly).
-
-To make use of the built-in automation using GH Actions for releasing a new version of this service, you should
-
-* branch away from master to a branch called `release-x.y.z` (where `x.y.z` is your version),
-* write release notes in the [releasenotes/](releasenotes/) folder,
-* check the output of GH Actions builds for the release branch, 
-* verify that your image was built and pushed to DockerHub with the right tags,
-* update the image tags in [deploy/service.yaml], and
-* test your service against a working Keptn installation.
-
-If any problems occur, fix them in the release branch and test them again.
-
-Once you have confirmed that everything works and your version is ready to go, you should
-
-* create a new release on the release branch using the [GitHub releases page](https://github.com/keptn-sandbox/keptn-service-template-go/releases), and
-* merge any changes from the release branch back to the master branch.
-
-## License
-
-Please find more information in the [LICENSE](LICENSE) file.

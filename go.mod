@@ -1,4 +1,4 @@
-module example.com/keptn-service-template-go
+module github.com/kubeshop/testkube-executor-keptn
 
 go 1.16
 
