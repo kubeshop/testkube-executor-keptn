@@ -1,22 +1,5 @@
 package main
 
-/*
-  Notes: Your pod (service) will be deployed with a sidecar container called the Keptn distributor.
-  The distributors job is to connect to Keptn's core and ensure that cloudevents are received.
-  The cloudevents you choose to receive are defined either at deployment time (distributor.pubsubTopic) or adjustable from the keptns bridge
-  When the cloud event is received, the processKeptnCloudEvent function is fired.
-
-  TODO: Change the ServiceName to reflect whatever you want to call this service
-  TODO: Start your logic in the processKeptnCloudEvent function
-
-  -- Every Keptn service has a lifecycle --
-  1) A keptn service typically responds to receiving an {event}.triggered cloudevent from Keptn. This service most likely will respond to a sh.keptn.event.test.triggered cloudevent
-  2) Every Leptn service MUST send a .started event back to Keptn. This signals to Keptn that this service is starting some work
-  3) Every Keptn service MAY send one or more .status.changed events back to Keptn. This signals that the work is still ongoing but the service would like to update Keptn of progress and values
-  4) Every Keptn service MUST send a .finished event back to Keptn. This signals to Keptn that this service is finished, and usually some useful data is also returned
-
-  You can find the outline of this lifecycle in eventhandlers.go
-*/
 import (
 	"context"
 	"errors"
@@ -26,7 +9,6 @@ import (
 
 	cloudevents "github.com/cloudevents/sdk-go/v2" // make sure to use v2 cloudevents here
 	"github.com/kelseyhightower/envconfig"
-	keptnlib "github.com/keptn/go-utils/pkg/lib"
 	keptn "github.com/keptn/go-utils/pkg/lib/keptn"
 	keptnv2 "github.com/keptn/go-utils/pkg/lib/v0_2_0"
 )
@@ -45,7 +27,7 @@ type envConfig struct {
 }
 
 // ServiceName specifies the current services name (e.g., used as source when sending CloudEvents)
-const ServiceName = "keptn-service-template-go"
+const ServiceName = "testkube-executor-keptn"
 
 /**
  * Parses a Keptn Cloud Event payload (data attribute)

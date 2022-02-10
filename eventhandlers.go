@@ -3,12 +3,10 @@ package main
 // Here is a generic example of an echo service: https://github.com/keptn-sandbox/echo-service
 // It listens for all cloud events (see deploy/service.yaml: PUBSUB_TOPIC wildcard: "sh.keptn.>"") and automatically responds with .started and .finished events
 import (
-	"fmt"
 	"log"
 	"time"
 
 	cloudevents "github.com/cloudevents/sdk-go/v2" // make sure to use v2 cloudevents here
-	keptn "github.com/keptn/go-utils/pkg/lib"
 	keptnv2 "github.com/keptn/go-utils/pkg/lib/v0_2_0"
 )
 

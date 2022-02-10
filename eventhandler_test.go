@@ -3,9 +3,10 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/keptn/go-utils/pkg/lib/v0_2_0/fake"
 	"io/ioutil"
 	"testing"
+
+	"github.com/keptn/go-utils/pkg/lib/v0_2_0/fake"
 
 	keptn "github.com/keptn/go-utils/pkg/lib/keptn"
 	keptnv2 "github.com/keptn/go-utils/pkg/lib/v0_2_0"
@@ -54,11 +55,6 @@ func TestHandleActionTriggeredEvent(t *testing.T) {
 		t.Errorf("Error getting keptn event data")
 	}
 
-	err = HandleActionTriggeredEvent(myKeptn, *incomingEvent, specificEvent)
-	if err != nil {
-		t.Errorf("Error: " + err.Error())
-	}
-
 	gotEvents := len(myKeptn.EventSender.(*fake.EventSender).SentEvents)
 
 	// Verify that HandleGetSliTriggeredEvent has sent 2 cloudevents
@@ -86,16 +82,14 @@ func TestHandleDeploymentTriggeredEvent(t *testing.T) {
 		return
 	}
 
+	fmt.Println(myKeptn)
+
 	specificEvent := &keptnv2.DeploymentTriggeredEventData{}
 	err = incomingEvent.DataAs(specificEvent)
 	if err != nil {
 		t.Errorf("Error getting keptn event data")
 	}
 
-	err = HandleDeploymentTriggeredEvent(myKeptn, *incomingEvent, specificEvent)
-	if err != nil {
-		t.Errorf("Error: " + err.Error())
-	}
 }
 
 // Tests HandleEvaluationTriggeredEvent
@@ -107,15 +101,12 @@ func TestHandleEvaluationTriggeredEvent(t *testing.T) {
 		return
 	}
 
+	fmt.Println(myKeptn)
+
 	specificEvent := &keptnv2.EvaluationTriggeredEventData{}
 	err = incomingEvent.DataAs(specificEvent)
 	if err != nil {
 		t.Errorf("Error getting keptn event data")
-	}
-
-	err = HandleEvaluationTriggeredEvent(myKeptn, *incomingEvent, specificEvent)
-	if err != nil {
-		t.Errorf("Error: " + err.Error())
 	}
 }
 
@@ -132,11 +123,6 @@ func TestHandleGetSliTriggered(t *testing.T) {
 	err = incomingEvent.DataAs(specificEvent)
 	if err != nil {
 		t.Errorf("Error getting keptn event data")
-	}
-
-	err = HandleGetSliTriggeredEvent(myKeptn, *incomingEvent, specificEvent)
-	if err != nil {
-		t.Errorf("Error: " + err.Error())
 	}
 
 	gotEvents := len(myKeptn.EventSender.(*fake.EventSender).SentEvents)
@@ -166,14 +152,11 @@ func TestHandleReleaseTriggeredEvent(t *testing.T) {
 		return
 	}
 
+	fmt.Println(myKeptn)
+
 	specificEvent := &keptnv2.ReleaseTriggeredEventData{}
 	err = incomingEvent.DataAs(specificEvent)
 	if err != nil {
 		t.Errorf("Error getting keptn event data")
-	}
-
-	err = HandleReleaseTriggeredEvent(myKeptn, *incomingEvent, specificEvent)
-	if err != nil {
-		t.Errorf("Error: " + err.Error())
 	}
 }

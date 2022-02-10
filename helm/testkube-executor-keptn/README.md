@@ -1,20 +1,18 @@
-
-keptn-service-template-go
+testkube-executor-keptn
 ===========
 
-Helm Chart for the keptn keptn-service-template-go
-
+Helm Chart for the keptn testkube-executor-keptn
 
 ## Configuration
 
-The following table lists the configurable parameters of the keptn-service-template-go chart and their default values.
+The following table lists the configurable parameters of the testkube-executor-keptn chart and their default values.
 
 | Parameter                | Description             | Default        |
 | ------------------------ | ----------------------- | -------------- |
-| `image.repository` | Container image name | `"ghcr.io/kubeshop/testkube-executor-keptn"` |
+| `image.repository` | Container image name | `"kubeshop/testkube-executor-keptn"` |
 | `image.pullPolicy` | Kubernetes image pull policy | `"IfNotPresent"` |
 | `image.tag` | Container tag | `""` |
-| `service.enabled` | Creates a kubernetes service for the keptn-service-template-go | `true` |
+| `service.enabled` | Creates a kubernetes service for the testkube-executor-keptn | `true` |
 | `distributor.stageFilter` | Sets the stage this helm service belongs to | `""` |
 | `distributor.serviceFilter` | Sets the service this helm service belongs to | `""` |
 | `distributor.projectFilter` | Sets the project this helm service belongs to | `""` |
@@ -38,8 +36,3 @@ The following table lists the configurable parameters of the keptn-service-templ
 | `nodeSelector` | Node selector configuration | `{}` |
 | `tolerations` | Tolerations for the pods | `[]` |
 | `affinity` | Affinity rules | `{}` |
-
-
-
-
-
