@@ -4,7 +4,7 @@ build:
   local:
     useBuildkit: true
   artifacts:
-    - image: ghcr.io/kubeshop/testkube-executor-keptn # Todo: Replace this with your image name
+    - image: kubeshop/testkube-executor-keptn # Todo: Replace this with your image name
       docker:
         dockerfile: Dockerfile
         buildArgs:
@@ -17,13 +17,13 @@ deploy:
       - name: keptn-service-template-go
         namespace: keptn
         artifactOverrides:
-          image: ghcr.io/kubeshop/testkube-executor-keptn # Todo: Replace this with your image name
+          image: kubeshop/testkube-executor-keptn # Todo: Replace this with your image name
         imageStrategy:
           helm: { }
         overrides:
           distributor:
             image:
-              tag: 0.11.4
+              tag: 0.12.0
           resources:
             limits:
               memory: 512Mi

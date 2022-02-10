@@ -1,7 +1,7 @@
 image:
-  repository: ghcr.io/kubeshop/testkube-executor-keptn # Container Image Name
+  repository: kubeshop/testkube-executor-keptn # Container Image Name
   pullPolicy: IfNotPresent                   # Kubernetes Image Pull Policy
-  tag: ""                                    # Container Tag
+  tag: "0.12.0"                                    # Container Tag
 service:
   enabled: true                              # Creates a Kubernetes Service for the keptn-service-template-go
 
@@ -13,7 +13,7 @@ distributor:
   image:
     repository: docker.io/keptn/distributor  # Container Image Name
     pullPolicy: IfNotPresent                 # Kubernetes Image Pull Policy
-    tag: "0.11.4"                            # Container Tag
+    tag: "0.12.0"                            # Container Tag
 
 remoteControlPlane:
   enabled: false                             # Enables remote execution plane mode
