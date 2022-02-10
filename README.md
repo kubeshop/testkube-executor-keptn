@@ -22,16 +22,16 @@ If you want to get more insights into processing those CloudEvents or even defin
 
 ### Common tasks
 
-* Build the binary: `go build -ldflags '-linkmode=external' -v -o keptn-service-template-go`
+* Build the binary: `go build -ldflags '-linkmode=external' -v -o testkube-executor-keptn`
 * Run tests: `go test -race -v ./...`
-* Build the docker image: `docker build . -t kubeshop/testkube-executor-keptn:dev` (Note: Ensure that you use the correct DockerHub account/organization)
-* Run the docker image locally: `docker run --rm -it -p 8080:8080 kubeshop/testkube-executor-keptn:dev`
-* Push the docker image to DockerHub: `docker push kubeshop/testkube-executor-keptn:dev` (Note: Ensure that you use the correct DockerHub account/organization)
+* Build the docker image: `docker build . -t kubeshop/testkube-executor-keptn:0.12.0` (Note: Ensure that you use the correct DockerHub account/organization)
+* Run the docker image locally: `docker run --rm -it -p 8080:8080 kubeshop/testkube-executor-keptn:0.12.0`
+* Push the docker image to DockerHub: `docker push kubeshop/testkube-executor-keptn:0.12.0` (Note: Ensure that you use the correct DockerHub account/organization)
 * Deploy the service using `kubectl`: `kubectl apply -f deploy/`
 * Delete/undeploy the service using `kubectl`: `kubectl delete -f deploy/`
-* Watch the deployment using `kubectl`: `kubectl -n keptn get deployment keptn-service-template-go -o wide`
-* Get logs using `kubectl`: `kubectl -n keptn logs deployment/keptn-service-template-go -f`
-* Watch the deployed pods using `kubectl`: `kubectl -n keptn get pods -l run=keptn-service-template-go`
+* Watch the deployment using `kubectl`: `kubectl -n keptn get deployment testkube-executor-keptn -o wide`
+* Get logs using `kubectl`: `kubectl -n keptn logs deployment/testkube-executor-keptn -f`
+* Watch the deployed pods using `kubectl`: `kubectl -n keptn get pods -l run=testkube-executor-keptn`
 * Deploy the service using [Skaffold](https://skaffold.dev/): `skaffold run --default-repo=your-docker-registry --tail` (Note: Replace `your-docker-registry` with your DockerHub username; also make sure to adapt the image name in [skaffold.yaml](skaffold.yaml))
 
 

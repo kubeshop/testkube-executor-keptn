@@ -14,7 +14,7 @@ deploy:
     flags:
       upgrade: ["--reuse-values", "--install"]
     releases:
-      - name: keptn-service-template-go
+      - name: testkube-executor-keptn
         namespace: keptn
         artifactOverrides:
           image: kubeshop/testkube-executor-keptn # Todo: Replace this with your image name
