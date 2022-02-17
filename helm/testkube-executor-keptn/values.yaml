@@ -15,6 +15,10 @@ distributor:
     pullPolicy: IfNotPresent                 # Kubernetes Image Pull Policy
     tag: "0.12.0"                            # Container Tag
 
+# If this microservice is running on the same K8S cluster as the control plane components (eg. bridge, shipyard controller etc.)
+# Then leave this as false. In this case, the distributor will listen for events using NATS.
+# If this service is running on a different K8S cluster to the control plane components, then set this to true and fill in the details
+# In this mode, the distributor container regularly polls the Keptn API via HTTPS and authenticates with the API token
 remoteControlPlane:
   enabled: false                             # Enables remote execution plane mode
   api:
