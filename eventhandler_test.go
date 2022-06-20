@@ -40,123 +40,45 @@ func initializeTestObjects(eventFileName string) (*keptnv2.Keptn, *cloudevents.E
 	return myKeptn, incomingEvent, err
 }
 
-// Tests HandleActionTriggeredEvent
+// Tests HandleTestTriggeredEvent
 // TODO: Add your test-code
-func TestHandleActionTriggeredEvent(t *testing.T) {
+func TestHandleTestTriggeredEvent(t *testing.T) {
 	myKeptn, incomingEvent, err := initializeTestObjects("test-events/action.triggered.json")
 	if err != nil {
 		t.Error(err)
 		return
 	}
 
-	specificEvent := &keptnv2.ActionTriggeredEventData{}
+	specificEvent := &keptnv2.TestTriggeredEventData{}
 	err = incomingEvent.DataAs(specificEvent)
 	if err != nil {
 		t.Errorf("Error getting keptn event data")
 	}
 
+	err = HandleTestTriggeredEvent(myKeptn, *incomingEvent, specificEvent)
+	if err != nil {
+		t.Errorf("Error: %v", err)
+	}
+
 	gotEvents := len(myKeptn.EventSender.(*fake.EventSender).SentEvents)
 
-	// Verify that HandleGetSliTriggeredEvent has sent 2 cloudevents
-	if gotEvents != 2 {
+	// Verify that HandleTestTriggeredEvent has sent 3 cloudevents
+	if gotEvents != 3 {
 		t.Errorf("Expected two events to be sent, but got %v", gotEvents)
 	}
 
 	// Verify that the first CE sent is a .started event
 	if keptnv2.GetStartedEventType(keptnv2.ActionTaskName) != myKeptn.EventSender.(*fake.EventSender).SentEvents[0].Type() {
-		t.Errorf("Expected a action.started event type")
-	}
-
-	// Verify that the second CE sent is a .finished event
-	if keptnv2.GetFinishedEventType(keptnv2.ActionTaskName) != myKeptn.EventSender.(*fake.EventSender).SentEvents[1].Type() {
-		t.Errorf("Expected a action.finished event type")
-	}
-}
-
-// Tests HandleDeploymentTriggeredEvent
-// TODO: Add your test-code
-func TestHandleDeploymentTriggeredEvent(t *testing.T) {
-	myKeptn, incomingEvent, err := initializeTestObjects("test-events/evaluation.triggered.json")
-	if err != nil {
-		t.Error(err)
-		return
-	}
-
-	fmt.Println(myKeptn)
-
-	specificEvent := &keptnv2.DeploymentTriggeredEventData{}
-	err = incomingEvent.DataAs(specificEvent)
-	if err != nil {
-		t.Errorf("Error getting keptn event data")
-	}
-
-}
-
-// Tests HandleEvaluationTriggeredEvent
-// TODO: Add your test-code
-func TestHandleEvaluationTriggeredEvent(t *testing.T) {
-	myKeptn, incomingEvent, err := initializeTestObjects("test-events/evaluation.triggered.json")
-	if err != nil {
-		t.Error(err)
-		return
-	}
-
-	fmt.Println(myKeptn)
-
-	specificEvent := &keptnv2.EvaluationTriggeredEventData{}
-	err = incomingEvent.DataAs(specificEvent)
-	if err != nil {
-		t.Errorf("Error getting keptn event data")
-	}
-}
-
-// Tests the HandleGetSliTriggeredEvent Handler
-// TODO: Add your test-code
-func TestHandleGetSliTriggered(t *testing.T) {
-	myKeptn, incomingEvent, err := initializeTestObjects("test-events/get-sli.triggered.json")
-	if err != nil {
-		t.Error(err)
-		return
-	}
-
-	specificEvent := &keptnv2.GetSLITriggeredEventData{}
-	err = incomingEvent.DataAs(specificEvent)
-	if err != nil {
-		t.Errorf("Error getting keptn event data")
-	}
-
-	gotEvents := len(myKeptn.EventSender.(*fake.EventSender).SentEvents)
-
-	// Verify that HandleGetSliTriggeredEvent has sent 2 cloudevents
-	if gotEvents != 2 {
-		t.Errorf("Expected two events to be sent, but got %v", gotEvents)
+		t.Errorf("Expected a action.started event type, got %s", myKeptn.EventSender.(*fake.EventSender).SentEvents[0].Type())
 	}
 
 	// Verify that the first CE sent is a .started event
-	if keptnv2.GetStartedEventType(keptnv2.GetSLITaskName) != myKeptn.EventSender.(*fake.EventSender).SentEvents[0].Type() {
-		t.Errorf("Expected a get-sli.started event type")
+	if keptnv2.GetStatusChangedEventType(keptnv2.ActionTaskName) != myKeptn.EventSender.(*fake.EventSender).SentEvents[1].Type() {
+		t.Errorf("Expected a action.changed event type, got %s", myKeptn.EventSender.(*fake.EventSender).SentEvents[1].Type())
 	}
 
 	// Verify that the second CE sent is a .finished event
-	if keptnv2.GetFinishedEventType(keptnv2.GetSLITaskName) != myKeptn.EventSender.(*fake.EventSender).SentEvents[1].Type() {
-		t.Errorf("Expected a get-sli.finished event type")
-	}
-}
-
-// Tests the HandleReleaseTriggeredEvent Handler
-// TODO: Add your test-code
-func TestHandleReleaseTriggeredEvent(t *testing.T) {
-	myKeptn, incomingEvent, err := initializeTestObjects("test-events/release.triggered.json")
-	if err != nil {
-		t.Error(err)
-		return
-	}
-
-	fmt.Println(myKeptn)
-
-	specificEvent := &keptnv2.ReleaseTriggeredEventData{}
-	err = incomingEvent.DataAs(specificEvent)
-	if err != nil {
-		t.Errorf("Error getting keptn event data")
+	if keptnv2.GetFinishedEventType(keptnv2.ActionTaskName) != myKeptn.EventSender.(*fake.EventSender).SentEvents[2].Type() {
+		t.Errorf("Expected a action.finished event type, got %s", myKeptn.EventSender.(*fake.EventSender).SentEvents[2].Type())
 	}
 }
