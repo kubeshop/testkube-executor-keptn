@@ -3,7 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"os"
 	"testing"
 
 	"github.com/keptn/go-utils/pkg/lib/v0_2_0/fake"
@@ -19,7 +19,7 @@ import (
  */
 func initializeTestObjects(eventFileName string) (*keptnv2.Keptn, *cloudevents.Event, error) {
 	// load sample event
-	eventFile, err := ioutil.ReadFile(eventFileName)
+	eventFile, err := os.ReadFile(eventFileName)
 	if err != nil {
 		return nil, nil, fmt.Errorf("Cant load %s: %s", eventFileName, err.Error())
 	}
